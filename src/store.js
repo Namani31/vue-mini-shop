@@ -45,12 +45,12 @@ const store = createStore({
     }
 
   },
-  getters:{
-    filteredProductList: (state) => ( selectedCategory)=>{
-      console.log('selectedCategory=>',selectedCategory);
-      
-      if(!selectedCategory) { return state.productList;}
-      return state.productList.filter(product => product.category2 === selectedCategory);  
+  getters: {
+    filteredProductList: (state) => (selectedCategory = '') => {
+      console.log('selectedCategory=>', selectedCategory,'<');
+  
+      if (!selectedCategory) { return state.productList; }
+      return state.productList.filter(product => product.category2 === selectedCategory);
     }
   }
 
