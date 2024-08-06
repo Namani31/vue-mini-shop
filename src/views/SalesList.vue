@@ -2,7 +2,7 @@
   <main class="mt-3">
     <div class="container">
       <div class="float-end mb-3">
-        <button type="button" class="btn btn-dark">제품등록</button>
+        <button type="button" class="btn btn-dark" @click="gotoCreate">제품등록</button>
       </div>
       <table class="table table-bordered">
         <thead>            
@@ -28,7 +28,8 @@
             <td>
                <button type="button" class="btn btn-info me-1" >사진등록</button>
                <button type="button" class="btn btn-warning me-1" >수정</button>
-               <button type="button" class="btn btn-danger me-1" >삭제</button>
+               <button type="button" class="btn btn-danger me-1"
+               @click="deleteProduct(product.id)" >삭제</button>
             </td>
           </tr>
         </tbody>
@@ -40,13 +41,19 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
+import {mapGetters, mapMutations} from 'vuex';
 export default {
   name: 'SalesList',
   computed: {
     // Vuex의 mapGetters를 사용하여 filteredProductList를 가져옴
     ...mapGetters(['filteredProductList'])
   },
+  methods:{
+    ...mapMutations(['deleteProduct']),
+    gotoCreate(){
+      this.$router.push({path:'/create'});
+    }
+  }
 };
 </script>
 
